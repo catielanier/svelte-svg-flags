@@ -4,11 +4,11 @@
   export let code: string;
   export let width: number | undefined;
 
-  const country = countryCodes.find((x) => {
+  const countryObject = countryCodes.find((x) => {
     return x.alpha2 === code || x.alpha3 === code;
   })
 </script>
 
 {#if country.alpha2}
-  <img src="../assets/countries/{country.alpha2}.svg" width={width ?? 32} alt={country.name} />
+  <img src="../assets/countries/{countryObject.alpha2}.svg" width={width ?? 32} alt={countryObject.name} />
 {/if}
