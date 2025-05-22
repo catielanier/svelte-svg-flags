@@ -1,0 +1,42 @@
+# Node dependencies
+node_modules/
+
+# Build outputs
+dist/
+types/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Optional: SvelteKit preview or temp files
+.svelte-kit/
+.svelte/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Mac/Linux backup files
+*~
+
+# dotenv files
+.env
+.env.*
+
+# VSCode settings
+.vscode/
+
+# Yarn PnP
+.pnp*
+

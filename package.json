@@ -1,0 +1,40 @@
+{
+  "name": "svelte-svg-flags",
+  "version": "0.1.0",
+  "svelte": "./dist/index.js",
+  "types": "./types/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "svelte": "./dist/index.js",
+      "types": "./types/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "vite build && tsc && svelte-package",
+    "check": "svelte-check"
+  },
+  "peerDependencies": {
+    "svelte": "^3.0.0"
+  },
+  "keywords": [],
+  "author": "Catie Lanier",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@sveltejs/package": "^2.3.11",
+    "@tsconfig/svelte": "^5.0.4",
+    "svelte": "^5.33.0",
+    "svelte-check": "^4.2.1",
+    "svelte-preprocess": "^6.0.3",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
