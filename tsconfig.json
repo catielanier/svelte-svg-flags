@@ -1,17 +1,20 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
-  "include": ["src/**/*", "src/**/*.svelte"],
-  "exclude": ["node_modules"],
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "types",
-    "emitDeclarationOnly": true,
-    "outDir": "dist",
+    "target": "ESNext",
     "module": "ESNext",
-    "target": "ES2017",
     "moduleResolution": "Node",
-    "strict": true,
+    "lib": ["DOM", "ESNext"],
+    "types": ["svelte"],
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "$lib": ["src/lib"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.svelte", "src/svelte.d.ts"]
 }
