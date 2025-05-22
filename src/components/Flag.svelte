@@ -8,19 +8,19 @@
   export let width: number | undefined;
 
   const countryObject = countryCodes.find((x) => {
-    return x.alpha2 === code || x.alpha3 === code;
+    return x.alpha2.toLowerCase() === country.toLowerCase() || x.alpha3.toLowerCase() === country.toLowerCase();
   })
 
   const getStateName = (): string => {
-    switch (countryObject.alpha2) {
+    switch (countryObject.alpha2.toLowerCase()) {
       case 'us':
-        return usCodes[state]
+        return usCodes[state.toLowerCase()]
       case 'ca':
-        return canadaCodes[state]
+        return canadaCodes[state.toLowerCase()]
       case 'uk':
-        return ukCodes[state]
+        return ukCodes[state.toLowerCase()]
       case 'au':
-        return australiaCodes[state]
+        return australiaCodes[state.toLowerCase()]
       default:
         break;
     }
@@ -30,6 +30,6 @@
 </script>
 
 {#if country.alpha2}
-  <img src={state ? `../assets/states/${country.alpha2}/${state}.svg` : `../assets/countries/${country.alpha2}.svg`} width={width ?? 32} alt={state ? stateName : country.name} />
+  <img src={state ? `../assets/states/${country.alpha2}/${state.toLowerCase()}.svg` : `../assets/countries/${country.alpha2.toLowerCase()}.svg`} width={width ?? 32} alt={state ? stateName : country.name} />
 {/if}
 
