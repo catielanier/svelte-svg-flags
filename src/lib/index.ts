@@ -1,3 +1,3 @@
-import Flag from ".components/Flag.svelte";
+import Flag from "./Flag.svelte";
 
 export default Flag;

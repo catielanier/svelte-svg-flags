@@ -1,7 +1,7 @@
 
 <script lang="ts">
-  import countryCodes from '../utils/countryCodes.ts'
-  import {usCodes, canadaCodes, ukCodes, australiaCodes} from '../utils/stateCodes.ts'
+  import countryCodes from './utils/countryCodes'
+  import {usCodes, canadaCodes, ukCodes, australiaCodes} from './utils/stateCodes'
 
   export let country: string;
   export let state: string | undefined;
