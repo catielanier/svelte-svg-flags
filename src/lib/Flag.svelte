@@ -30,6 +30,6 @@
 </script>
 
 {#if country.alpha2}
-  <img src={state ? `../assets/states/${country.alpha2}/${state.toLowerCase()}.svg` : `../assets/countries/${country.alpha2.toLowerCase()}.svg`} width={width ?? 32} alt={state ? stateName : country.name} />
+  <img src={state ? `$lib/states/${country.alpha2}/${state.toLowerCase()}.svg` : `$lib/countries/${country.alpha2.toLowerCase()}.svg`} width={width ?? 32} alt={state ? stateName : country.name} />
 {/if}
 
