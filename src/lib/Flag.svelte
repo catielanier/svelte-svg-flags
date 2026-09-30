@@ -1,35 +1,90 @@
-
 <script lang="ts">
-  import countryCodes from './utils/countryCodes'
-  import {usCodes, canadaCodes, ukCodes, australiaCodes} from './utils/stateCodes'
+  import countryCodes from './utils/countryCodes';
+  import {
+    usCodes,
+    canadaCodes,
+    ukCodes,
+    australiaCodes
+  } from './utils/stateCodes';
 
-  export let country: string;
-  export let state: string | undefined;
-  export let width: number | undefined;
-
-  const countryObject = countryCodes.find((x) => {
-    return x.alpha2.toLowerCase() === country.toLowerCase() || x.alpha3.toLowerCase() === country.toLowerCase();
-  })
-
-  const getStateName = (): string => {
-    switch (countryObject.alpha2.toLowerCase()) {
-      case 'us':
-        return usCodes[state.toLowerCase()]
-      case 'ca':
-        return canadaCodes[state.toLowerCase()]
-      case 'uk':
-        return ukCodes[state.toLowerCase()]
-      case 'au':
-        return australiaCodes[state.toLowerCase()]
-      default:
-        break;
-    }
+  interface Props {
+    country: string;
+    state?: string;
+    width?: number;
   }
 
-  const stateName: string | undefined = state ? getStateName() : undefined;
+  let {
+    country,
+    state,
+    width = 32
+  }: Props = $props();
+
+  const countryFlags = import.meta.glob<string>('./countries/*.svg', {
+    eager: true,
+    query: '?url',
+    import: 'default'
+  });
+
+  const stateFlags = import.meta.glob<string>('./states/**/*.svg', {
+    eager: true,
+    query: '?url',
+    import: 'default'
+  });
+
+  const countryObject = $derived(
+    countryCodes.find(
+      ({ alpha2, alpha3 }) =>
+        alpha2.toLowerCase() === country.toLowerCase() ||
+        alpha3.toLowerCase() === country.toLowerCase()
+    )
+  );
+
+  const stateName = $derived.by(() => {
+    if (!state || !countryObject) {
+      return undefined;
+    }
+
+    const stateCode = state.toLowerCase();
+
+    switch (countryObject.alpha2.toLowerCase()) {
+      case 'us':
+        return usCodes[stateCode];
+
+      case 'ca':
+        return canadaCodes[stateCode];
+
+      case 'uk':
+        return ukCodes[stateCode];
+
+      case 'au':
+        return australiaCodes[stateCode];
+
+      default:
+        return undefined;
+    }
+  });
+
+  const flagUrl = $derived.by(() => {
+    if (!countryObject) {
+      return undefined;
+    }
+
+    const countryCode = countryObject.alpha2.toLowerCase();
+
+    if (state) {
+      return stateFlags[
+        `./states/${countryCode}/${state.toLowerCase()}.svg`
+      ];
+    }
+
+    return countryFlags[`./countries/${countryCode}.svg`];
+  });
 </script>
 
-{#if country.alpha2}
-  <img src={state ? `$lib/states/${country.alpha2}/${state.toLowerCase()}.svg` : `$lib/countries/${country.alpha2.toLowerCase()}.svg`} width={width ?? 32} alt={state ? stateName : country.name} />
+{#if countryObject && flagUrl}
+  <img
+    src={flagUrl}
+    width={width}
+    alt={state ? (stateName ?? state) : countryObject.name}
+  />
 {/if}
-

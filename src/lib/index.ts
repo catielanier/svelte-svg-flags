@@ -1,3 +1,1 @@
-import Flag from "./Flag.svelte";
-
-export default Flag;
+export { default as Flag } from './Flag.svelte';
