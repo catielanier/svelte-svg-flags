@@ -2,7 +2,7 @@
 	"name": "svelte-svg-flags",
 	"version": "0.0.1",
 	"author": "Catie Lanier <hello@catielanier.ca>",
-	"license": "GPL-3.0",
+	"license": "GPL-3.0-only",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
